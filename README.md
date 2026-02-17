@@ -2,6 +2,16 @@
 
 This repository is my personal space for learning the Python programming language, one example at a time. I believe in learning by doing, so each file in this repository represents a new concept or a step forward in my Python journey.
 
+## Core Coding Conventions
+
+A key part of writing clean, readable Python code is adhering to the **PEP 8** style guide.
+
+### Naming Conventions:
+
+*   **`snake_case`**: For all variable and function names. This is the standard for making code easy to read (e.g., `net_savings`, `calculate_total()`).
+*   **`UPPERCASE_SNAKE_CASE`**: For constants, which are variables whose values are not intended to change (e.g., `HABITS`, `TAX_RATE`).
+*   **`PascalCase`**: For class names (e.g., `class MyNewClass:`). We haven't used classes yet, but it's good to know!
+
 ## My First Step: A Personal Budget Tracker
 
 The first example, `personalbudgettracker.py`, is a simple command-line tool to track daily income and expenses.
