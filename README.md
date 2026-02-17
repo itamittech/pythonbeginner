@@ -2,15 +2,91 @@
 
 This repository is my personal space for learning the Python programming language, one example at a time. I believe in learning by doing, so each file in this repository represents a new concept or a step forward in my Python journey.
 
-## Core Coding Conventions
+## Core Python Concepts
 
-A key part of writing clean, readable Python code is adhering to the **PEP 8** style guide.
+A key part of writing clean, readable Python code is understanding its fundamental syntax and structure.
 
-### Naming Conventions:
+### Indentation: The Foundation of Python
 
-*   **`snake_case`**: For all variable and function names. This is the standard for making code easy to read (e.g., `net_savings`, `calculate_total()`).
-*   **`UPPERCASE_SNAKE_CASE`**: For constants, which are variables whose values are not intended to change (e.g., `HABITS`, `TAX_RATE`).
-*   **`PascalCase`**: For class names (e.g., `class MyNewClass:`). We haven't used classes yet, but it's good to know!
+Unlike other languages that use brackets (`{}`), Python uses indentation to define code blocks. This is not just for style—it's a syntax rule. Consistent indentation (the standard is 4 spaces) is mandatory.
+
+```python
+# This is a code block
+if net_savings > daily_saving_goal:
+    # This indented block only runs if the condition is true
+    print("Excellent! You exceeded your goal.")
+    print("Keep up the great work!")
+
+# This line is not indented, so it's outside the if block
+print("Summary complete.")
+```
+
+### Defining Functions
+
+Functions are reusable blocks of code. In Python, you define them using the `def` keyword. Modern Python encourages using type hints to specify the types of parameters and the return value.
+
+```python
+#           Parameter with type hint
+#           |
+def get_positive_float(prompt: str) -> float | None:
+#                              |           |
+#                              Return type hint (can be a float or None)
+
+    """
+    This is a docstring, explaining what the function does.
+    """
+    raw = input(prompt)
+    if not raw:
+        return None # Returns a value of type None
+    return float(raw) # Returns a value of type float
+```
+
+### Looping and Iteration
+
+Loops are used to repeat a block of code.
+
+*   **`for` loop**: Iterates over a sequence (like a list or dictionary).
+
+```python
+# Iterating over the keys and values of a dictionary
+for habit_name, config in HABITS.items():
+    print(f"Checking habit: {habit_name}")
+```
+
+*   **`while` loop**: Repeats as long as a condition is true.
+
+```python
+# Looping until the user is done entering values
+entry_number = 1
+while True:
+    value = get_positive_float(f"Entry {entry_number}: ")
+    if value is None:
+        break # Exit the loop
+    entries.append(value)
+    entry_number += 1
+```
+
+### Comprehensions: A Pythonic Shortcut
+
+Comprehensions provide a concise way to create lists, dictionaries, or sets. They can often replace a `for` loop with a single, more readable line.
+
+*   **Dictionary Comprehension**: Creates a new dictionary from an iterable.
+
+```python
+# This line from healthyhabittracker.py...
+totals_summary = {name: cfg["total"] for name, cfg in HABITS.items()}
+
+# ...is a compact and efficient way of writing this for loop:
+totals_summary = {}
+for name, cfg in HABITS.items():
+    totals_summary[name] = cfg["total"]
+```
+
+### Naming Conventions (PEP 8)
+
+*   **`snake_case`**: For all variable and function names (e.g., `net_savings`, `calculate_total()`).
+*   **`UPPERCASE_SNAKE_CASE`**: For constants (e.g., `HABITS`, `TAX_RATE`).
+*   **`PascalCase`**: For class names (e.g., `class MyNewClass:`).
 
 ## My First Step: A Personal Budget Tracker
 
