@@ -4,7 +4,7 @@ This repository is my personal space for learning the Python programming languag
 
 ## Core Python Concepts
 
-A key part of writing clean, readable Python code is understanding its fundamental syntax and structure.
+A key part of writing clean, readable Python code is understanding its fundamental syntax and structure. This section covers the core concepts demonstrated in our examples.
 
 ### Indentation: The Foundation of Python
 
@@ -21,9 +21,9 @@ if net_savings > daily_saving_goal:
 print("Summary complete.")
 ```
 
-### Defining Functions
+### Defining Functions & Docstrings
 
-Functions are reusable blocks of code. In Python, you define them using the `def` keyword. Modern Python encourages using type hints to specify the types of parameters and the return value.
+Functions are reusable blocks of code defined with the `def` keyword. A good function has a clear name, type hints for its parameters and return value, and a **docstring** that explains its purpose.
 
 ```python
 #           Parameter with type hint
@@ -31,14 +31,26 @@ Functions are reusable blocks of code. In Python, you define them using the `def
 def get_positive_float(prompt: str) -> float | None:
 #                              |           |
 #                              Return type hint (can be a float or None)
+    """
+    This is a docstring. It explains what the function does,
+    its arguments, and what it returns. It's crucial for documentation.
+    """
+    # ... function code ...
+```
 
-    """
-    This is a docstring, explaining what the function does.
-    """
-    raw = input(prompt)
-    if not raw:
-        return None # Returns a value of type None
-    return float(raw) # Returns a value of type float
+### Exception Handling (`try...except`)
+
+Code doesn't always run perfectly. Users might enter text where a number is expected. Instead of crashing, we can handle these errors gracefully using a `try...except` block.
+
+```python
+try:
+    # The code that might fail goes in the 'try' block
+    value = float(raw_input) # This will raise a ValueError if raw_input is not a number
+    return value
+except ValueError:
+    # If a ValueError occurs, the code in the 'except' block is executed
+    print("Invalid input. Please enter a number.")
+    return None # We can return a default value
 ```
 
 ### Looping and Iteration
@@ -47,24 +59,21 @@ Loops are used to repeat a block of code.
 
 *   **`for` loop**: Iterates over a sequence (like a list or dictionary).
 
-```python
-# Iterating over the keys and values of a dictionary
-for habit_name, config in HABITS.items():
-    print(f"Checking habit: {habit_name}")
-```
+    ```python
+    # Iterating over the keys and values of a dictionary
+    for habit_name, config in HABITS.items():
+        print(f"Checking habit: {habit_name}")
+    ```
 
 *   **`while` loop**: Repeats as long as a condition is true.
 
-```python
-# Looping until the user is done entering values
-entry_number = 1
-while True:
-    value = get_positive_float(f"Entry {entry_number}: ")
-    if value is None:
-        break # Exit the loop
-    entries.append(value)
-    entry_number += 1
-```
+    ```python
+    # Looping until the user is done entering values
+    while True:
+        value = get_positive_float("Enter a number: ")
+        if value is None:
+            break # The 'break' keyword exits the loop immediately
+    ```
 
 ### Comprehensions: A Pythonic Shortcut
 
@@ -72,14 +81,30 @@ Comprehensions provide a concise way to create lists, dictionaries, or sets. The
 
 *   **Dictionary Comprehension**: Creates a new dictionary from an iterable.
 
-```python
-# This line from healthyhabittracker.py...
-totals_summary = {name: cfg["total"] for name, cfg in HABITS.items()}
+    ```python
+    # This line from healthyhabittracker.py...
+    totals_summary = {name: cfg["total"] for name, cfg in HABITS.items()}
 
-# ...is a compact and efficient way of writing this for loop:
-totals_summary = {}
-for name, cfg in HABITS.items():
-    totals_summary[name] = cfg["total"]
+    # ...is a compact and efficient way of writing this for loop:
+    totals_summary = {}
+    for name, cfg in HABITS.items():
+        totals_summary[name] = cfg["total"]
+    ```
+
+### The `if __name__ == "__main__"` Block
+
+This block is a standard Python convention. The code inside it will only run when the file is executed directly as a script. If the file is imported into another script, the code inside this block will *not* run. This makes your code reusable and modular.
+
+```python
+def run_tracker():
+    # Main application logic here
+    print("Tracker is running!")
+
+# --- Entry point ---
+if __name__ == "__main__":
+    # This code only runs when you execute `python healthyhabittracker.py`
+    # It will NOT run if you do `import healthyhabittracker` in another file.
+    run_tracker()
 ```
 
 ### Naming Conventions (PEP 8)
