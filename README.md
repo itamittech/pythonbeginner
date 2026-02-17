@@ -22,3 +22,19 @@ python personalbudgettracker.py
 ```
 
 I'm excited to continue this journey and add more examples as I learn!
+
+## Next Step: A Healthy Habit Tracker
+
+The `healthyhabittracker/healthyhabittracker.py` example is designed to help users track their daily healthy habits.
+
+### Concepts Learned:
+
+*   **User Input:** Taking user input for habit tracking.
+*   **Conditional Logic:** Evaluating habit completion.
+*   **Basic Output:** Providing feedback on habit adherence.
+
+### How to Run It:
+
+```bash
+python healthyhabittracker/healthyhabittracker.py
+```
