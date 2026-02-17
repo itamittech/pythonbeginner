@@ -29,9 +29,14 @@ The `healthyhabittracker/healthyhabittracker.py` example is designed to help use
 
 ### Concepts Learned:
 
-*   **User Input:** Taking user input for habit tracking.
-*   **Conditional Logic:** Evaluating habit completion.
-*   **Basic Output:** Providing feedback on habit adherence.
+*   **Data-Driven Design:** Using a central `HABITS` dictionary to define the application's behavior, making the code more modular and easier to extend.
+*   **Functions:** Organizing code into reusable blocks with clear purposes (e.g., `collect_entries`, `evaluate_habit`).
+*   **Dictionaries:** Storing complex, related data in a key-value format.
+*   **Lists:** Collecting multiple user inputs into a list.
+*   **Loops:** Using `for` loops to iterate over dictionaries and `while` loops for repetitive input.
+*   **Error Handling:** Using `try...except` to gracefully handle invalid user input without crashing.
+*   **Type Hinting:** Adding type annotations (`str`, `float`, `list`, `dict`) to improve code clarity and allow for static analysis.
+*   **Main Block:** Using `if __name__ == "__main__":` to create a clear entry point for the script.
 
 ### How to Run It:
 
