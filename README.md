@@ -15,6 +15,27 @@ A key part of writing clean, readable Python code is understanding its fundament
     TIME_SLOTS: tuple[str, ...] = ("morning", "afternoon", "evening")
     ```
 *   **Dictionaries & Lists**: We use dictionaries to store the configuration for each habit and lists (`entries`) inside them to store the data we collect at runtime. This shows how to nest data structures.
+*   **Sets**: An unordered collection of unique items. They are perfect for tracking things like an inventory where you only want one of each item and need to check for existence quickly.
+
+    ```python
+    inventory = {"key", "apple"}
+    if "key" in inventory:
+        print("You have the key!")
+    ```
+
+### Dataclasses
+
+Introduced in Python 3.7, `@dataclass` is a decorator that automatically generates special methods like `__init__` and `__repr__` for your classes. It's a clean and efficient way to define classes that primarily store data.
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class PlayerState:
+    # 'field' allows for a default value that's a new object (like a set) for each instance
+    inventory: set = field(default_factory=set)
+    escaped: bool = False
+```
 
 ### Indentation: The Foundation of Python
 
@@ -183,6 +204,30 @@ This version demonstrates more advanced software design principles and Python fe
 ### How to Run It:
 
 ```bash
-python healthyhabittracker/healthyhabittracker.py
+python healthyhabittracker.py
 ```
 This will start the interactive main menu.
+
+## Step 3: Escape Room Text Adventure
+
+The `escape_room.py` script is a data-driven text adventure game. It demonstrates how to separate game logic (the "engine") from the game content (the "world"), following the **Open/Closed Principle**.
+
+**Key Features:**
+*   **Data-Driven Architecture**: The entire game world (rooms, items, choices, and requirements) is defined in a single nested dictionary, making it easy to add content without touching the core game loop.
+*   **Persistent Player State**: Uses a `dataclass` to track the player's inventory and escape status cleanly.
+*   **Inventory & Requirements**: Some actions require specific items, and the game intelligently checks for them before allowing the player to proceed.
+*   **Narrative Feedback**: Each choice provides immediate, descriptive feedback, creating an immersive experience within the console.
+
+### Concepts Learned:
+
+*   **Dataclasses (`@dataclass`)**: A powerful way to define classes that primarily store data, automatically handling common boilerplate like `__init__`.
+*   **Sets for Unique Collections**: Using `set` for inventory to ensure the player only has one of each item and for efficient "is item in inventory" lookups.
+*   **Open/Closed Principle**: Designing the code so that you can add new rooms and choices (extension) without having to modify the existing `handle_room` or `main` logic (modification).
+*   **Nested Dictionary Lookups**: Deeply traversing nested data structures to retrieve and evaluate game rules dynamically based on player choices.
+
+### How to Run It:
+
+```bash
+python escape_room.py
+```
+Explore the mansion and find your way out!
